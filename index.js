@@ -1,91 +1,85 @@
 function minSum(arr) {
 
-let arrcopy = [], arrtotal = [], temp = [], tempsmall = [];
+let sourceArray = arr.slice(0, arr.length);
 
-arroriginal = arr.slice(0, arr.length);
+let sourceArrayCopy = [], arrayOfAllPairs = [], temp2 = [], temp1 = [];
 
-for (let step = 0; step < arr.length; step++) {
+//////////////////////////////// STEP 1 creating sets of unique pairs
 
-for (let index = 0; index < arr.length - 1; index++) {
+for (let shift = 0; shift < arr.length; shift++) {
 
-arrcopy = arroriginal.slice(0, arr.length);
+  for (let n = 0; n < arr.length - 1; n++) {
 
-tempsmall.push(arrcopy[0]); 
-tempsmall.push(arrcopy[index + 1]); 
-arrcopy.splice(index + 1, 1); 
-arrcopy.splice(0, 1); 
+  sourceArrayCopy = sourceArray.slice();
 
-// console.log("tempsmall");
-// console.log(tempsmall);
+  temp1.push(sourceArrayCopy[0]); 
+  temp1.push(sourceArrayCopy[n + 1]); 
 
-temp.push(tempsmall);
+  sourceArrayCopy.splice(n + 1, 1); 
+  sourceArrayCopy.splice(0, 1); 
 
-for (let i = 0; i < arr.length / 2 - 1; i++) {
-temp.push(arrcopy.splice(0, 2));
-}
+  temp2.push(temp1);
 
-// console.log("temp");
-// console.log(temp);
+  for (let i = 0; i < arr.length / 2 - 1; i++) {
+    temp2.push(sourceArrayCopy.splice(0, 2));
+    }
 
-tempsmall = [];
+temp1 = [];
 
-arrtotal.push(temp.splice(0, temp.length));
-
-// console.log("arrtotal");
-// console.log(arrtotal);
+arrayOfAllPairs.push(temp2.splice(0));
 
 }
 
-// moving indexes
-arroriginal.push(arroriginal.shift()); 
+let x = sourceArray.shift();
+
+sourceArray.push(x); 
 
 }
 
-// var mnozenia = [[]];
+console.log(arrayOfAllPairs)
 
-// for (let i = 0; i < arrtotal.length; i++) {
-//   for (let j = 0; j < arr.length / 2; j++) {
+//////////////////////////////// STEP 2 calculating pairs multiplications and adding products to allMultiplications array
 
+var allMultiplications = [];
+var multiplication = [];
 
-
-//     }
-//   }
-
-// var mnozenia = arrtotal.splice(0, arrtotal.length);
-// console.log(mnozenia);
-var mnozenietemp = [];
-
-for (let i = 0; i < arrtotal.length; i++) {
-  for (let j = 0; j < arr.length / 2; j++) {
-
-    // mnozenia.push(arrtotal[i][j][0] * arrtotal[i][j][1]);
-    // mnozenia[i][j] = 1;
-    // console.log(mnozenietemp);
-    // mnozenia.push(mnozenietemp);
-
+for (j = 0; j < arrayOfAllPairs.length; j++){
+  for (i = 0; i < arr.length/2; i++) {
+    multiplication[i] = arrayOfAllPairs[j][i][0] * arrayOfAllPairs[j][i][1];
+    }
+  allMultiplications.push(multiplication.splice(0));
   }
+
+console.log(allMultiplications)
+
+////////////////////////////// STEP 3 summing all multiplications
+
+let sums = [];
+let sum = 0;
+
+for (i = 0; i < allMultiplications.length; i++) {
+  sum = 0;
+  for (j = 0; j < arr.length/2; j++) {
+    sum = sum + allMultiplications[i][j];
+  }
+  sums.push(sum);
+  }
+
+console.log(sums)
+
+/////////////////////////////// STEP 4 sorting sums
+
+function compareNumbers(a, b) {
+  return a - b;
 }
-console.log(mnozenia);
-// console.log("arrtotal");
-// console.log(arrtotal);
-// console.log(mnozenietemp);
 
-// for (let i = 0; i < arr.length / 2; j++) {
-//   mnozenia
-// }
+sums.sort(compareNumbers);
 
-// for (let i = 0; i < arrtotal.length; i++) {
+console.log(sums)
+//////////////////////////////// STEP 5 - RESULT
 
-// // for (let j = 0; j < arr.length / 2; j++)
-
-// let x = arrtotal[i][j][0] * arrtotal[i][j][1] 
-//       + arrtotal[i][1][0] * arrtotal[i][1][1]
-//       + arrtotal[i][2][0] * arrtotal[i][2][1];
-
-// console.log(x);
-
-// }
+console.log("W końcu!!!! Najmniejsza suma iloczynów to: " + sums[0]);
 
 }
 
-minSum([1,2,3,4,5,6,7,8]);
+minSum([9,2,8,7,5,4,0,6]);
