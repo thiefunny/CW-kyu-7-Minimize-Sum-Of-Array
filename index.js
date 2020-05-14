@@ -2,7 +2,9 @@ function minSum(arr) {
 
 var temp = [];
 var pary = [];
-var l1, l2;
+var l1, l2, index_current, index_found;
+
+// 
 
 for (l1 = 0; l1 < arr.length; l1++) {
   for (l2 = l1 + 1; l2 < arr.length; l2++) {
@@ -10,51 +12,31 @@ for (l1 = 0; l1 < arr.length; l1++) {
     pary.push(temp.splice(0,2));
   }
 }
-
-temp = [];
-
-l1 = 0;
-l2 = 0;
-// for (l2 = 0; l2 < pary.length; l2++) {
-// for (l2 = l1; l2 < pary.length - l1; l2++) {
-// console.log("l1 = " + l1 + "; l2 = " + l2);
-// let x = pary[l1][0];
-
-
-do {
-console.log(l2, l1);
-do {temp.push(pary[l2]);
-console.log(temp);}
-while (pary[l2][0] == pary[l1][0]);
-
-l1++; l2=0;
+console.log(pary);
 }
-while (pary)
+// 
+
+// index_current = 0;
+
+// temp.push(pary[index_current]);
+//      index_found = index_current;
+
+// for (index_current = 0; index_current < pary.length; index_current++) {
+
+// if (
+//       (pary[index_current][0] != pary[index_found][0])
+//   &&
+//       (pary[index_current][0] != pary[index_found][1])
+//   &&
+//       (pary[index_current][1] != pary[index_found][0])
+//   &&
+//       (pary[index_current][1] != pary[index_found][1])
+//    )
+//    {
+//      temp.push(pary[index_current]);
+//      index_found = index_current;
+//    }
 // }
-
-// if (pary[l2][0] == pary[l1][0]) {
-// temp.push(pary[l2]);
-// console.log(temp);}
-// else {l1++;}
-// }
-
-
-
-
-// l1 = 0;
-// do {
-// temp.push(pary[l1]);
 // console.log(temp);
-// l1++;
-// }
-// while (pary[l1][0] != )
-
-return pary;
-
-}
-
-
-
-
 
 minSum([1,2,3,4,5,6]);
